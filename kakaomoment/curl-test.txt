@@ -1,0 +1,2 @@
+curl -X GET "https://apis.moment.kakao.com/openapi/v4/adAccounts?config=ON,OFF,DEL" 
+-H "Authorization: Bearer lsiF6WZrKCloFQsfjnvb6kgFarAtTSD32v4bZkoOCj1zFwAAAYZtuKp4"

@@ -1,0 +1,197 @@
+openapi: 3.0.1
+info:
+  description: "Naver searched ad API docs"
+  version: "1.0.0"
+  title: "Naver searched ad API docs"
+  contact:
+    email: "jimmy1.yoon@cheilpengtai.com"
+
+
+paths:
+  # Campaign
+  /ncc/campaigns/{campaignId}:
+    get:
+      summary: Returns the list of campaigns of input campaign ids.
+      
+      tags:
+        - Campaigns
+      parameters:
+        - in: path
+          name: campaignId
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: Returns the campaign of input ID
+      responses:
+        200:
+          description: provided as an element of the array
+          content: 
+            application/json:
+              example:
+                - nccCampaignId: ""
+                  customerId: ""
+                  name: ""
+                  userLock: ""
+                  campaignTp: ""
+                  deliveryMethod: ""
+                  trackingMode: ""
+                  usePeriod: ""
+                  dailyBudget: ""
+                  useDailyBudget: ""
+                  totalChargeCost: ""
+                  status: ""
+                  statusReason: ""
+                  expectCost: ""
+                  migType: ""
+                  delFlag: ""
+                  regTm: ""
+                  editTm: ""
+    post:
+      tags:
+        - Campaigns
+      parameters:
+        - in: path
+          name: campaignId
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: Create a new campaign
+      responses:
+        200:
+          description: provided as an element of the array
+          content: 
+            application/json:
+              example:
+                - nccCampaignId: 
+                  customerId: 
+                  name: 
+                  userLock: 
+                  campaignTp: 
+                  deliveryMethod: 
+                  trackingMode: 
+                  usePeriod:
+                  dailyBudget:
+                  useDailyBudget: 
+                  totalChargeCost: 
+                  status: 
+                  statusReason: 
+                  expectCost: 
+                  migType:
+                  delFlag: 
+                  regTm:
+                  editTm:
+  # Adgroup
+  /ncc/adgroup/{ids}:
+    get:
+      summary: Returns the adgroup of input ID
+      tags:
+        - Adgroup
+      parameters:
+        - in: path
+          name: ids
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: 광고 그룹의 ID
+      responses:
+        200:
+          description: provided as an element of the array
+          content: 
+            application/json:
+              example:
+                - nccAdgroupId: ""
+                  customerId: ""
+                  nccCampaignId: ""
+                  mobileChannelId: ""
+                  pcChannelId: ""
+                  bidAmt: ""
+                  name: ""
+                  userLock: ""
+                  useDailyBudget: ""
+                  useKeywordPlus: ""
+                  keywordPlusWeight: ""
+                  contentsNetworkBidAmt: ""
+                  useCntsNetworkBidAmt: ""
+                  mobileNetworkBidWeight: ""
+                  pcNetworkBidWeight: ""
+                  dailyBudget: ""
+                  budgetLock: ""
+                  delFlag: ""
+                  regTm: ""
+                  editTm: ""
+                  targetSummary:
+                    pcMobile: ""
+                    media: ""
+                  pcChannelKey: ""
+                  mobileChannelKey: ""
+                  status: ""
+                  statusReason: ""
+                  expectCost: ""
+                  migType: ""
+                  adgroupAttrJson: 
+                    campaignTp: ""
+                  adRollingType: ""
+                  adgroupType: ""
+                  systemBiddingType: ""
+                  useCntsNetworkBidWeight: ""
+                  contentsNetworkBidWeight: ""
+  # Stat
+  /stats:
+    get:
+      summary: Receive the Summary Report per single entity
+      tags:
+        - Stat
+      parameters:
+        - in: query
+          name: ids
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: Entity Id (campaign id, Ad group id, Ad keyword id, Ad id, Criterion id)
+        - in: query
+          name: fileds
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: Fields to be retrieved (JSON format string).
+        - in: query
+          name: timeRange
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: Hours of stats based on KST (JSON format string). This parameter is ignored if datePreset is provided
+        - in: query
+          name: datePreset
+          schema: 
+            type: string
+            minimum: 1
+          description: Predefined period of stats. This parameter is ignored if timeRange is provided
+          
+        - in: query
+          name: timeIncrement
+          schema: 
+            type: string
+            minimum: 1
+          description: Selection of daily aggregated stats(1) or summary stats(allDays). Default value is 1
+          
+        - in: query
+          name: breakdown
+          schema: 
+            type: string
+            minimum: 1
+          description: Stat classification type. Dose not support more than one breakdown. Default value is empty
+          
+      responses:
+        200:
+          description: provided as an element of the array
+          content: 
+            application/json:
+              example:
+                - dailyStatResponse :  Return daily stats data structure if timeInrcement is 1
+                  summaryStatResponse: Return summation stats data structure if timeInrcement is allDays
