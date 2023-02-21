@@ -8,6 +8,44 @@ info:
 
 
 paths:
+  /ncc/ad-extensions/{adExtensionId}:
+    get:
+      summary: Retrieves information on an AD extension
+      
+      tags:
+        - Ad extensions
+      parameters:
+        - in: path
+          name: adExtensionId
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: adExtensionId
+      responses:
+        200:
+          description: provided as an element of the array
+          content: 
+            application/json:
+              example:
+                - adExtension: ""
+                  customerId: ""
+                  editTm: ""
+                  enable: ""
+                  inspectStatus: ""
+                  mobileChannelId: ""
+                  nccAdExtensionId: ""
+                  ownerId: ""
+                  pcChannelId: ""
+                  periodEndDt: ""
+                  periodStartDt: ""
+                  regTm: ""
+                  schedule: ""
+                  status: ""
+                  statusReason: ""
+                  type: ""
+                  usePeriod: ""
+                  userLock: ""
   # Campaign
   /ncc/campaigns/{campaignId}:
     get:

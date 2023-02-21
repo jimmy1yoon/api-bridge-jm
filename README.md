@@ -30,7 +30,11 @@ CUSTOMER_ID = '<customer_id>'
 ### 광고계정 > 캠페인 > 광고그룹(세트) > 광고 및 소재, 타겟 세그먼트의 성과 데이터 추출
 
 1. 광고 계정
-    각 광고 계정의 access Key를 직접 입력해야 함
+    * GET /ncc/ad-extensions/
+
+    * GET /ncc/ad-extensions/{adExtensionId}
+
+    customerId를 반환한다.
 
 2. 캠페인
    * GET /ncc/campaigns
