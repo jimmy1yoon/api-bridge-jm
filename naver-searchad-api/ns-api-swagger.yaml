@@ -47,7 +47,8 @@ paths:
                   delFlag: ""
                   regTm: ""
                   editTm: ""
-    post:
+    put:
+      summary: use when pause Campaign
       tags:
         - Campaigns
       parameters:
@@ -57,31 +58,49 @@ paths:
           schema: 
             type: string
             minimum: 1
-          description: Create a new campaign
+          description: The unique ID of the campaign
+        - in: query
+          name: fields
+          schema: 
+            type: string
+            minimum: 1
+          description: Field name of the Campaign you want to modify
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/campaigns'
+            examples:
+              campaign:  # <--- example name
+                summary: campaign
+                value:
+                  nccCampaignId: ''
+                  userLock: True/false
       responses:
         200:
-          description: provided as an element of the array
+          description: success
           content: 
             application/json:
               example:
-                - nccCampaignId: 
-                  customerId: 
-                  name: 
-                  userLock: 
-                  campaignTp: 
-                  deliveryMethod: 
-                  trackingMode: 
-                  usePeriod:
-                  dailyBudget:
-                  useDailyBudget: 
-                  totalChargeCost: 
-                  status: 
-                  statusReason: 
-                  expectCost: 
-                  migType:
-                  delFlag: 
-                  regTm:
-                  editTm:
+                - campaignTp: ""
+                  customerId: ""
+                  dailyBudget: ""
+                  deliveryMethod: ""
+                  editTm: ""
+                  name: ""
+                  nccCampaignId: ""
+                  periodEndDt: ""
+                  periodStartDt: ""
+                  regTm: ""
+                  status: ""
+                  statusReason: ""
+                  trackingMode: ""
+                  trackingUrl: ""
+                  useDailyBudget: ""
+                  usePeriod: ""
+                  userLock: 'when Pause use this'
   # Adgroup
   /ncc/adgroup/{ids}:
     get:
@@ -138,6 +157,186 @@ paths:
                   systemBiddingType: ""
                   useCntsNetworkBidWeight: ""
                   contentsNetworkBidWeight: ""
+                  
+    put:
+      summary: use when pause Campaign
+      tags:
+        - Adgroup
+      parameters:
+        - in: path
+          name: adgroupId
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: The unique ID of the adgroup
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/adgroup'
+            examples:
+              campaign:  # <--- example name
+                summary: adgroup only require
+                value:
+                  bidAmt: ''
+                  contentsNetworkBidAmt: ''
+                  dailyBudget: ''
+                  keywordPlusWeight: ''
+                  mobileNetworkBidWeight: ''
+                  nccAdgroupId: ''
+                  pcNetworkBidWeight: ''
+                  useCntsNetworkBidAmt: ''
+                  useDailyBudget: ''
+                  useKeywordPlus: ''
+                  userLock: 'when Pause use this'
+      responses:
+        200:
+          description: success
+          content: 
+            application/json:
+              example:
+                - campaignTp: ""
+                  customerId: ""
+                  dailyBudget: ""
+                  deliveryMethod: ""
+                  editTm: ""
+                  name: ""
+                  nccCampaignId: ""
+                  periodEndDt: ""
+                  periodStartDt: ""
+                  regTm: ""
+                  status: ""
+                  statusReason: ""
+                  trackingMode: ""
+                  trackingUrl: ""
+                  useDailyBudget: ""
+                  usePeriod: ""
+                  userLock: ""
+  /Ad:
+    get:
+      summary: Receive the Summary Report per single entity
+      tags:
+        - Ad
+      parameters:
+        - in: query
+          name: ids
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: Entity Id (campaign id, Ad group id, Ad keyword id, Ad id, Criterion id)
+        - in: query
+          name: fileds
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: Fields to be retrieved (JSON format string).
+        - in: query
+          name: timeRange
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: Hours of stats based on KST (JSON format string). This parameter is ignored if datePreset is provided
+        - in: query
+          name: datePreset
+          schema: 
+            type: string
+            minimum: 1
+          description: Predefined period of stats. This parameter is ignored if timeRange is provided
+          
+        - in: query
+          name: timeIncrement
+          schema: 
+            type: string
+            minimum: 1
+          description: Selection of daily aggregated stats(1) or summary stats(allDays). Default value is 1
+          
+        - in: query
+          name: breakdown
+          schema: 
+            type: string
+            minimum: 1
+          description: Stat classification type. Dose not support more than one breakdown. Default value is empty
+          
+      responses:
+        200:
+          description: provided as an element of the array
+          content: 
+            application/json:
+              example:
+                - nccAdId: ''
+                  nccAdgroupId : ''
+                  customerId : ''
+                  inspectStatus: ''
+                  type: ''
+                  ad: ''
+                  adAttr: ''
+                  userLock: ''
+                  enable: ''
+                  delFlag: ''
+                  regTm: ''
+                  editTm: ''
+                  status: ''
+                  statusReason: ''
+                  
+  /ncc/ads/{adId}:
+    put:
+      summary: use when pause Campaign
+      tags:
+        - Ad
+      parameters:
+        - in: path
+          name: adgroupId
+          required: true
+          schema: 
+            type: string
+            minimum: 1
+          description: The unique ID of the adgroup
+        - in: query
+          name: fields
+          schema: 
+            type: string
+            minimum: 1
+          description: Field name of Ad you want to modify
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/adgroup'
+            examples:
+              campaign:  # <--- example name
+                summary: adgroup only require
+                value:
+                  adAttr: ''
+                  nccAdId: ''
+                  inspectRequestMsg: ''
+                  userLock: 'when Pause use this'
+      responses:
+        200:
+          description: success
+          content: 
+            application/json:
+              example:
+                - ad: ""
+                  customerId: ""
+                  editTm: ""
+                  inspectRequestMsg: ""
+                  inspectStatus: ""
+                  nccAdId: ""
+                  nccAdgroupId: ""
+                  nccQi: ""
+                  regTm: ""
+                  status: ""
+                  statusReason: ""
+                  type: ""
+                  userLock: ""
   # Stat
   /stats:
     get:

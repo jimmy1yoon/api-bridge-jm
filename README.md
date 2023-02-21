@@ -27,7 +27,7 @@ CUSTOMER_ID = '<customer_id>'
 
     * 자세한 API request, response는 swagger.yaml에 작성해두었습니다. 
 
-광고계정 > 캠페인 > 광고그룹(세트) > 광고 및 소재, 타겟 세그먼트의 형식
+### 광고계정 > 캠페인 > 광고그룹(세트) > 광고 및 소재, 타겟 세그먼트의 성과 데이터 추출
 
 1. 광고 계정
     각 광고 계정의 access Key를 직접 입력해야 함
@@ -60,18 +60,55 @@ CUSTOMER_ID = '<customer_id>'
 
         ids : AdgroupId, IDs of the ad
 
+        결과 adId를 반환합니다. 
+
 
     클릭, 노출 등등 확인하는 Api
 
     * Get /Stats/{ids,fields,datePreset}
     
-        ids : campaign id, Ad group id, Ad keyword id, Ad id, Criterion id
+        ids : campaign id, adGroup id, Ad keyword id, Ad id, Criterion id
 
+        Stats를 통해서 campaign별, adGroup별, Ad 별 데이터를 확인할 수 있습니다.
 
     * Get /ncc/keywords{ids}
 
         ids : KeywordId
         KeywordIds가 필요하기 때문에 이를 구해오는 api를 찾아야한다. 
+
+**따라서 그룹, 캠페인, 광고 API를 통해 각각의 ID를 받고 최종적으로 ID별로 Stat request를 보내서 데이터를 확인하는 구조입니다.**
+
+--- 
+
+### 캠페인, 광고그룹, 광고 별 Pause 기능 API
+
+1. 캠페인 
+
+    * PUT /ncc/campaigns/{campaignId} 
+
+        campaignId : The unique ID of the Campaign.
+        
+        request body
+        * userLock : Pause 여부
+
+2. 광고그룹
+
+    * PUT /ncc/adgroups/{adgroupId}
+
+        adgroupId : The unique ID of the Ad Group.
+
+        request body
+        * userLock : Pause 여부
+
+3. 광고
+   
+   * PUT /ncc/ads/{adId}
+
+        adId : ID of the ad
+
+        request body
+        * userLock : Pause 여부
+
 
 # 카카오 모먼트 api 목록
 
