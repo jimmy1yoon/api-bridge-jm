@@ -15,29 +15,8 @@
 3. Go to Tools > API Manager
 4. Create API license
 
-### Git clone
 
-```bash
-$ git clone https://github.com/naver/searchad-apidoc.git
-$ cd searchad-apidoc/python-sample/
-$ pip install -r requirements.txt 
-$ cd examples/
-```
-
-### Modify [ad_management_sample.py](examples/ad_management_sample.py).
+### Modify [ns_test.py](/ns_test.ipynb).
 - `<API_KEY>`
 - `<SECRET_KEY>`
 - `<CUSTOMER_ID>`
-
-### Execute sample codes.
-- [ad_management_sample.py](examples/ad_management_sample.py)
-
-#### *nix
-```bash
-$ python ad_management_sample.py
-```
-
-#### windows
-```bat
-> python ad_management_sample.py
-```
