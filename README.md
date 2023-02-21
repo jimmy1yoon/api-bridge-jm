@@ -3,7 +3,7 @@
 * naver-searchad-api : 네이버 검색 광고 API
 
   * ns-api-swagger.yaml : SWAGGER API로 API를 확인할 수 있습니다.
-  * ns-test.ipynb : API 예제 코드
+  * ns-test.ipynb : ipynb 형식으로 각 api 별 코드와 결과를 확인할 수 있습니다. 
   * ad_management_sample.py: 네이버 검색광고 공식 github 예제
 
 
